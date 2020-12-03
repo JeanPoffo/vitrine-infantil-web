@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, CircularProgress } from '@material-ui/core';
 
 import CardCategory from './CardCategory';
 
@@ -15,12 +15,15 @@ import Category from '../../types/Category';
 import api from '../../services/api';
 
 const SarchCategorySection: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [categoriesFilter, setCategoriesFilter] = useState<Category[]>([]);
 
   useEffect(() => {
     api.get<Category[]>('categories-public').then((response) => {
       if (response.data) {
         setCategoriesFilter(response.data);
+
+        setIsLoading(false);
       }
     });
   }, []);
@@ -33,8 +36,10 @@ const SarchCategorySection: React.FC = () => {
 
       if (category) {
         return (
-          <Grid item xs={4} md={2}>
-            <CardCategory category={category} icon={icon} />
+          <Grid item xs={6} md={2}>
+            <Box display="flex" alignItems="center" justifyContent="center">
+              <CardCategory category={category} icon={icon} />
+            </Box>
           </Grid>
         );
       }
@@ -45,15 +50,19 @@ const SarchCategorySection: React.FC = () => {
   );
 
   return (
-    <Box>
-      <Grid container spacing={1}>
-        {renderCardCategory('Blusas', shirtIcon)}
-        {renderCardCategory('Calças', troserIcon)}
-        {renderCardCategory('Vestidos', dressIcon)}
-        {renderCardCategory('Casacos', coatIcon)}
-        {renderCardCategory('Pijamas', pajamaIcon)}
-        {renderCardCategory('Meias', sockIcon)}
-      </Grid>
+    <Box display="flex" alignItems="center" justifyContent="center">
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <Grid container spacing={5}>
+          {renderCardCategory('Blusas', shirtIcon)}
+          {renderCardCategory('Calças', troserIcon)}
+          {renderCardCategory('Vestidos', dressIcon)}
+          {renderCardCategory('Casacos', coatIcon)}
+          {renderCardCategory('Pijamas', pajamaIcon)}
+          {renderCardCategory('Meias', sockIcon)}
+        </Grid>
+      )}
     </Box>
   );
 };

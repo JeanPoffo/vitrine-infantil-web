@@ -7,6 +7,7 @@ import {
   Grid,
   Typography,
   Container,
+  CircularProgress,
   TableContainer,
   Table,
   TableBody,
@@ -40,6 +41,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
 )(TableRow);
 
 const ProductDetail: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [product, setProduct] = useState<Product>();
 
   const { id } = useParams<RouteParams>();
@@ -50,6 +52,8 @@ const ProductDetail: React.FC = () => {
     api.get<Product>(`products-public/${id}`).then((response) => {
       if (response.data) {
         setProduct(response.data);
+
+        setIsLoading(false);
       }
     });
   }, [id]);
@@ -65,86 +69,92 @@ const ProductDetail: React.FC = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Container>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Box className={imageContainer}>
-                <img
-                  src={product?.image}
-                  alt={product?.name}
-                  className={image}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-between"
-              >
-                <Typography variant="h4">
-                  <strong>{product?.name}</strong>
-                </Typography>
-                <br />
-                <Typography variant="h4" color="primary">
-                  <strong>{`R$ ${product?.price.toFixed(2)}`}</strong>
-                </Typography>
-                <br />
-                <Typography variant="body2">{product?.description}</Typography>
-                <br />
-                <TableContainer>
-                  <Table aria-label="tabela dados produto">
-                    <TableBody>
-                      <StyledTableRow>
-                        <TableCell>
-                          <strong>Cor</strong>
-                        </TableCell>
-                        <TableCell>{product?.color}</TableCell>
-                      </StyledTableRow>
-                      <StyledTableRow>
-                        <TableCell>
-                          <strong>Gênero</strong>
-                        </TableCell>
-                        <TableCell>{product?.gender}</TableCell>
-                      </StyledTableRow>
-                      <StyledTableRow>
-                        <TableCell>
-                          <strong>Tamanho</strong>
-                        </TableCell>
-                        <TableCell>{product?.size}</TableCell>
-                      </StyledTableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-                <br />
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+          <Container>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <Box className={imageContainer}>
+                  <img
+                    src={product?.image}
+                    alt={product?.name}
+                    className={image}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6}>
                 <Box
-                  flexGrow="1"
                   display="flex"
                   flexDirection="column"
-                  alignItems="flex-start"
-                  justifyContent="flex-end"
+                  justifyContent="space-between"
                 >
-                  <Link
-                    href={product?.link}
-                    rel="noopener"
-                    target="_blank"
-                    color="inherit"
-                    underline="none"
+                  <Typography variant="h4">
+                    <strong>{product?.name}</strong>
+                  </Typography>
+                  <br />
+                  <Typography variant="h4" color="primary">
+                    <strong>{`R$ ${product?.price.toFixed(2)}`}</strong>
+                  </Typography>
+                  <br />
+                  <Typography variant="body2">
+                    {product?.description}
+                  </Typography>
+                  <br />
+                  <TableContainer>
+                    <Table aria-label="tabela dados produto">
+                      <TableBody>
+                        <StyledTableRow>
+                          <TableCell>
+                            <strong>Cor</strong>
+                          </TableCell>
+                          <TableCell>{product?.color}</TableCell>
+                        </StyledTableRow>
+                        <StyledTableRow>
+                          <TableCell>
+                            <strong>Gênero</strong>
+                          </TableCell>
+                          <TableCell>{product?.gender}</TableCell>
+                        </StyledTableRow>
+                        <StyledTableRow>
+                          <TableCell>
+                            <strong>Tamanho</strong>
+                          </TableCell>
+                          <TableCell>{product?.size}</TableCell>
+                        </StyledTableRow>
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <br />
+                  <Box
+                    flexGrow="1"
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    justifyContent="flex-end"
                   >
-                    <Button
-                      size="large"
-                      variant="contained"
-                      color="secondary"
-                      startIcon={<ShoppingBasketSharp />}
+                    <Link
+                      href={product?.link}
+                      rel="noopener"
+                      target="_blank"
+                      color="inherit"
+                      underline="none"
                     >
-                      Ir à Loja
-                    </Button>
-                  </Link>
+                      <Button
+                        size="large"
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<ShoppingBasketSharp />}
+                      >
+                        Ir à Loja
+                      </Button>
+                    </Link>
+                  </Box>
                 </Box>
-              </Box>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        )}
       </Box>
       <FooterSection />
     </Box>

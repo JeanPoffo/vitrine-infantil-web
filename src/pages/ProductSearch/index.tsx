@@ -52,7 +52,11 @@ const ProductSearch: React.FC = () => {
 
   const getResultProducts = useCallback(() => {
     if (isSearching) {
-      return <CircularProgress />;
+      return (
+        <Box mt={5}>
+          <CircularProgress />
+        </Box>
+      );
     }
 
     if (products.length > 0) {

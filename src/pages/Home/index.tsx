@@ -35,7 +35,13 @@ const Home: React.FC = () => {
                   Busque por Categorias
                 </Typography>
               </Box>
-              <Box flexGrow={1} mt={2}>
+              <Box
+                flexGrow={1}
+                mt={2}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
                 <SarchCategorySection />
               </Box>
             </Box>

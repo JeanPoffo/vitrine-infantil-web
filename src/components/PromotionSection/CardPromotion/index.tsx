@@ -29,6 +29,9 @@ const CardPromotion: React.FC<CardPromotionProps> = ({ promotion }) => {
           <Typography variant="h6" color="textPrimary">
             <strong>{promotion.name}</strong>
           </Typography>
+          <Typography color="textSecondary">
+            <strong>{promotion.store.name}</strong>
+          </Typography>
           <Typography color="textSecondary">{promotion.description}</Typography>
         </CardActionArea>
       </Card>

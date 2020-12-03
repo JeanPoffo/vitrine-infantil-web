@@ -68,9 +68,11 @@ const ProductSearch: React.FC = () => {
     }
 
     return (
-      <Typography variant="h4" color="primary">
-        Sem Resultados
-      </Typography>
+      <Box mt={5}>
+        <Typography variant="h4" color="primary">
+          Sem Resultados
+        </Typography>
+      </Box>
     );
   }, [isSearching, products]);
 

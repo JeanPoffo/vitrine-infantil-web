@@ -8,6 +8,7 @@ import troserIcon from '../../assets/trouser.svg';
 import sockIcon from '../../assets/sock.svg';
 import pajamaIcon from '../../assets/pajama.svg';
 import dressIcon from '../../assets/dress.svg';
+import coatIcon from '../../assets/coat.svg';
 
 import Category from '../../types/Category';
 
@@ -32,7 +33,7 @@ const SarchCategorySection: React.FC = () => {
 
       if (category) {
         return (
-          <Grid item xs={6} md={3}>
+          <Grid item xs={4} md={2}>
             <CardCategory category={category} icon={icon} />
           </Grid>
         );
@@ -48,9 +49,10 @@ const SarchCategorySection: React.FC = () => {
       <Grid container spacing={1}>
         {renderCardCategory('Blusas', shirtIcon)}
         {renderCardCategory('Calças', troserIcon)}
-        {renderCardCategory('Meias', sockIcon)}
-        {renderCardCategory('Pijamas', pajamaIcon)}
         {renderCardCategory('Vestidos', dressIcon)}
+        {renderCardCategory('Casacos', coatIcon)}
+        {renderCardCategory('Pijamas', pajamaIcon)}
+        {renderCardCategory('Meias', sockIcon)}
       </Grid>
     </Box>
   );

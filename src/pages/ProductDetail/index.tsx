@@ -59,8 +59,8 @@ const ProductDetail: React.FC = () => {
       <HeaderSection />
       <Box
         component="main"
-        marginBottom={10}
-        marginTop={5}
+        pb={10}
+        mt={5}
         display="flex"
         justifyContent="center"
         alignItems="center"

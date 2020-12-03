@@ -20,29 +20,28 @@ const Home: React.FC = () => {
   return (
     <Box>
       <HeaderSection />
-      <Box component="main" marginBottom={10}>
+      <Box component="main" pb={10}>
         <SearchSection />
-        <Box component="section" marginTop={5}>
+        <Box component="section" pt={5}>
           <Container>
-            <Grid
-              container
-              direction="column"
-              justify="center"
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
               alignItems="center"
-              spacing={3}
             >
-              <Grid item>
+              <Box>
                 <Typography variant="h4" align="center">
                   Busque por Categorias
                 </Typography>
-              </Grid>
-              <Grid item>
+              </Box>
+              <Box flexGrow={1} mt={2}>
                 <SarchCategorySection />
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Container>
         </Box>
-        <Box component="section" marginTop={5}>
+        <Box component="section" pt={5}>
           <Container>
             <Grid
               container

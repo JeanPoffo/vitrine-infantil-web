@@ -31,7 +31,7 @@ const CardCategory: React.FC<CardCategoryProps> = ({
   }, [addCategory, category, history]);
 
   return (
-    <Box>
+    <Box width="115px">
       <Card className={cardContainer}>
         <CardActionArea onClick={onClickCard}>
           <Box

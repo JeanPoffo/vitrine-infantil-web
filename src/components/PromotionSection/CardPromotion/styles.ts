@@ -3,6 +3,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() =>
   createStyles({
     cardContainer: {
+      height: '100%',
       display: 'flex',
 
       boxShadow: '2px 2px 8px rgba(0, 0, 0, 0.2)',

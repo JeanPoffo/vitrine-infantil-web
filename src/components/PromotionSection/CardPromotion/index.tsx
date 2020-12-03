@@ -1,5 +1,6 @@
 import React, { HTMLProps } from 'react';
 import { Box, Card, CardActionArea, Typography } from '@material-ui/core';
+// import { withStyles } from '@material-ui/core/styles';
 
 import { PaletteProps, SpacingProps } from '@material-ui/system';
 
@@ -11,11 +12,13 @@ interface CardPromotionProps extends HTMLProps<PaletteProps & SpacingProps> {
   promotion: Promotion;
 }
 
+// const PurpleTypography = withStyles({ root: { color: '#B67EC8' } })(Typography);
+
 const CardPromotion: React.FC<CardPromotionProps> = ({ promotion }) => {
   const { cardContainer, cardContent } = useStyles();
 
   return (
-    <Box>
+    <Box height="100%">
       <Card className={cardContainer}>
         <CardActionArea
           className={cardContent}

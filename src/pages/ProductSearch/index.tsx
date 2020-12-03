@@ -81,11 +81,11 @@ const ProductSearch: React.FC = () => {
   return (
     <Box>
       <HeaderSection />
-      <Box component="main" marginBottom={10}>
+      <Box component="main">
         <SearchSection />
-        <Box component="section">
+        <Box pt={5} pb={10}>
           <Container>
-            <Box marginTop={5} width="100%">
+            <Box component="section" width="100%">
               <Grid
                 container
                 justify="flex-start"
@@ -116,7 +116,7 @@ const ProductSearch: React.FC = () => {
                     >
                       {getResultProducts()}
                     </Grid>
-                    <Box mt={5}>{getResultPagination()}</Box>
+                    <Box pt={5}>{getResultPagination()}</Box>
                   </Box>
                 </Grid>
               </Grid>

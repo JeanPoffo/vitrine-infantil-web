@@ -16,7 +16,8 @@ import useStyles from './styles';
 
 import { useFilter } from '../../hooks/filter';
 
-const WhiteTypography = withStyles({ root: { color: '#8CD1F9' } })(Typography);
+const WhiteTypography = withStyles({ root: { color: '#fff' } })(Typography);
+// const WhiteTypography = withStyles({ root: { color: '#000000' } })(Typography);
 
 const SearchSection: React.FC = () => {
   const [descriptionFilter, setDescriptionFilter] = useState<string>('');
@@ -55,7 +56,7 @@ const SearchSection: React.FC = () => {
       display="flex"
       flexDirection="column"
       justifyContent="center"
-      height="300px"
+      height="350px"
       className={searchArea}
     >
       <Container>
